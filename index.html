@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>🐱🥁</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/7.0.3/sanitize.min.css">
+  <link rel="stylesheet" href="./index.css">
+
+
+</head>
+
+<body>
+  <div id="root" class="viewport">
+    <main>
+      <video v-if="bongocat && bongocat.type.S != 'yt'" ref="bongocat" autoplay="autoplay" :controls="videoControls"
+        :src="bongocat.src.S" :style="{ width: videoSize + 'vw', height: videoSize + 'vh'}">
+      </video>
+      <iframe v-if="bongocat && bongocat.type.S == 'yt'" type="text/html" allow="autoplay" :style="{ width: videoSize + 'vw', height: videoSize + 'vh'}"
+        :src="`${bongocat.src.S}?autoplay=1&controls=${videoControls ? 1 : 0}&disablekb=1`" frameborder="0"></iframe>
+    </main>
+    <div id="footer" class="information" v-if="showFooter">
+      <ul class="how-tos">
+        <li class="how-to how-to-desktop">
+          <button v-on:click="slapTheBongo" class="control-key control-key-button" style="font-size: 1.5rem; margin-bottom: 10px">
+            Bongo!!!
+          </button>
+        </li>
+
+        <li v-if="!autoplayWarningSeen" class="how-to how-to-desktop">
+          Press
+          <span class="control-key">
+            space
+          </span>
+          once or click play to get the party
+          started!
+        </li>
+
+        <li v-if="bongocat" class="how-to">
+          <a :href="bongocat.original.S" target="_blank" id="source" rel="noopener noreferrer">
+            original source
+          </a>
+        </li>
+
+        <li class="how-to how-to-desktop">
+          <ul class="controls">
+            <li v-for="key in keys" class="control">
+              <span class="control-key">{{ key[0] }}</span> {{ key[1] }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://platform.twitter.com/widgets.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js" defer></script>
+  <script src="./bongo.js" defer></script>
+</body>
+
+</html>
