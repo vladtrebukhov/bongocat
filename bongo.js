@@ -27,16 +27,16 @@ const root = new Vue({
     videoSize: 50,
     videoControls: true,
     showFooter: true,
-    previousVideo: null,
     keys: [
       ['space', 'another video'],
       ['+', 'zoom in'],
-      ['-', 'zoom out'],
+      (2)[('-', 'zoom out')],
       ['p', 'play/pause'],
       ['f', 'toggle footer']
     ]
   },
   methods: {
+    // HLS.js API to stream video from source
     slapTheBongo () {
       console.log('bongocat!');
       fetch(this.endpoint)
@@ -44,17 +44,17 @@ const root = new Vue({
         .then(data => {
           let bongocat = data[Math.floor(Math.random() * data.length)];
           console.log(bongocat);
-          console.log(bongocat.type.S);
-          if (bongocat) {
+          if (bongocat.type.S) {
             Vue.nextTick(() => {
-              const hls = new Hls();
+              const video = document.getElementById('video');
+              console.log(video);
+              // const hls = new Hls();
+              // hls.loadSource(bongocat.src.S);
+              // hls.attachMedia(this.$refs.bongocat);
 
-              hls.loadSource(bongocat.src.S);
-              hls.attachMedia(this.$refs.bongocat);
-
-              hls.on(Hls.Events.MANIFEST_PARSED, function () {
-                this.$refs.bongocat.play();
-              });
+              // hls.on(Hls.Events.MANIFEST_PARSED, function () {
+              //   video.play();
+              // });
             });
           }
         })
