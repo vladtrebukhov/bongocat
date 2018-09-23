@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>🐱🥁</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/7.0.3/sanitize.min.css">
   <link rel="stylesheet" href="./index.css">
 
 
@@ -15,11 +14,11 @@
 <body>
   <div id="root" class="viewport">
     <main>
-      <video v-if="bongocat && bongocat.type.S != 'yt'" ref="bongocat" autoplay="autoplay" :controls="videoControls"
+      <video id="video" v-if="bongocat && bongocat.type.S !='yt'" ref="bongocat" autoplay="autoplay" :controls="videoControls"
         :src="bongocat.src.S" :style="{ width: videoSize + 'vw', height: videoSize + 'vh'}">
-      </video>
-      <iframe v-if="bongocat && bongocat.type.S == 'yt'" type="text/html" allow="autoplay" :style="{ width: videoSize + 'vw', height: videoSize + 'vh'}"
-        :src="`${bongocat.src.S}?autoplay=1&controls=${videoControls ? 1 : 0}&disablekb=1`" frameborder="0"></iframe>
+        </video>
+        <iframe v-if="bongocat && bongocat.type.S == 'yt'" type="text/html" allow="autoplay" :style="{ width: videoSize + 'vw', height: videoSize + 'vh'}"
+          :src="`${bongocat.src.S}?autoplay=1&controls=${videoControls ? 1 : 0}&disablekb=1`" frameborder="0"></iframe>
     </main>
     <div id="footer" class="information" v-if="showFooter">
       <ul class="how-tos">
